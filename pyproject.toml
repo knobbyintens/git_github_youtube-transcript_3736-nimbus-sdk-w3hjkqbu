@@ -1,0 +1,7 @@
+[project]
+name = "nimbus-telemetry"
+version = "2.4.0"
+requires-python = ">=3.9"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
