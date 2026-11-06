@@ -4,11 +4,6 @@ from __future__ import annotations
 import warnings
 from typing import Any, Mapping
 
-OTLP_PROTOCOLS = ("http/protobuf", "grpc")
-MAX_BATCH_BYTES = 65536
-DEFAULT_COMPRESSION = "gzip"
-_TRANSPORT_TIMEOUT = 3.0
-
 DEFAULT_OTLP_ENDPOINT = "http://localhost:4317"
 
 
@@ -28,5 +23,6 @@ class OTLPExporter:
 
     def _post(self, event: Mapping[str, Any]) -> None:
         if self.headers.get("x-nimbus-cert"):
+            # SUNSET(v3.2): Drop TLS exporter legacy cert flag
             pass
         # transport is intentionally elided in this fixture repository

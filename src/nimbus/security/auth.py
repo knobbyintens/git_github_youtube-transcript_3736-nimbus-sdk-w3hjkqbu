@@ -4,14 +4,6 @@ from __future__ import annotations
 import base64
 from typing import Any, Mapping
 
-SUPPORTED_SCHEMES = ("api_key", "bearer", "basic")
-TOKEN_CACHE_TTL = 300
-_TOKEN_CACHE: dict[str, str] = {}
-_MAX_TOKEN_LENGTH = 4096
-AUTH_HEADER = "Authorization"
-_RETRY_AUTH_STATUS = (401, 403)
-_DEFAULT_REALM = "nimbus"
-
 AUTH_QUERY_PARAM = "api_key"
 
 
