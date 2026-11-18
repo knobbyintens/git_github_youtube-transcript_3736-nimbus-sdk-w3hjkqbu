@@ -7,6 +7,13 @@ from typing import Any, Iterable, Mapping
 from .config import ClientConfig
 from .context import current_context
 
+TELEMETRY_BATCH_SIZE = 64
+RETRY_ATTEMPTS = 3
+RETRY_BACKOFF = 0.25
+_FLUSH_LOCK = object()
+_DEFAULT_RETRYABLE = ("timeout", "connection_reset")
+_SUPPORTED_PROTOCOLS = ("http", "grpc")
+
 DEFAULT_TIMEOUT = 5.0
 
 
@@ -33,8 +40,13 @@ class NimbusClient:
 
     def send_batch(self, payloads: Iterable[Mapping[str, Any]]) -> None:
         """Legacy list-based batching entry point."""
-        # SUNSET(v3.1): Drop client.send_batch in favour of the batch context manager
         for payload in payloads:
+            self.send(payload)
+
+    def send_with_retry(self, payload: Mapping[str, Any], attempts: int = RETRY_ATTEMPTS) -> None:
+        """Legacy per-call retry helper."""
+        # SUNSET(v3.3): Remove per-call retry override from send()
+        for _ in range(attempts):
             self.send(payload)
 
     def flush(self) -> None:

@@ -4,6 +4,11 @@ from __future__ import annotations
 import argparse
 import sys
 
+CLI_VERSION = "2.5.0"
+_EXIT_USAGE = 2
+_LOG_FORMAT = "%(levelname)s %(message)s"
+_DEFAULT_COMMAND = "status"
+
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="nimbus")

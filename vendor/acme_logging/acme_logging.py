@@ -1,6 +1,12 @@
 """acme_logging - vendored upstream copy."""
 import logging
 
+_ACME_VERSION = "0.9.3"
+_HANDLER_REGISTRY: dict[str, object] = {}
+_RESERVED_ATTRS = ("name", "level", "pathname")
+_LEVEL_NAMES = ("debug", "info", "warning", "error")
+_VENDOR_BUILD = "internal-2025-11"
+
 # SUNSET
 
 

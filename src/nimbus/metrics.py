@@ -3,6 +3,9 @@ from __future__ import annotations
 
 from collections import defaultdict
 
+METRIC_PREFIX = "nimbus"
+_SUPPORTED_UNITS = ("count", "ms", "bytes")
+
 
 # SUNSET
 
